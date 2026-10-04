@@ -255,7 +255,7 @@ $$
 \hat{p} = \frac{clicks}{n}
 $$
 
-and
+and:
 
 $$
 SE = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
@@ -263,7 +263,7 @@ $$
 
 ---
 
-### 1. Model Each User's Click
+## 1. Model Each User's Click
 
 For every user, define a random variable $X_i$:
 
@@ -283,7 +283,7 @@ $$
 P(X_i=1)=p
 $$
 
-and
+and:
 
 $$
 P(X_i=0)=1-p
@@ -293,7 +293,7 @@ This is called a **Bernoulli random variable**.
 
 ---
 
-### 2. Expected Value of One User's Click
+## 2. Expected Value of One User's Click
 
 The expected value of a random variable is:
 
@@ -301,7 +301,7 @@ $$
 E[X_i] = \sum_x xP(X_i=x)
 $$
 
-For our Bernoulli variable, $X_i$ can only be $0$ or $1$:
+For our Bernoulli random variable, $X_i$ can only be $0$ or $1$:
 
 $$
 E[X_i]
@@ -319,7 +319,7 @@ So, the average value of the click variable is equal to the true click probabili
 
 ---
 
-### 3. Variance of One User's Click
+## 3. Variance of One User's Click
 
 Variance measures how much a random variable varies around its expected value.
 
@@ -341,7 +341,7 @@ $$
 0^2=0
 $$
 
-and
+and:
 
 $$
 1^2=1
@@ -373,7 +373,7 @@ $$
 
 ---
 
-### 4. Calculate the Observed Click Rate
+## 4. Calculate the Observed Click Rate
 
 Suppose we observe $n$ users.
 
@@ -403,7 +403,7 @@ Here, $\hat{p}$ is called the **sample proportion** or **point estimate** of the
 
 ---
 
-### 5. Variance of the Sample Proportion
+## 5. Variance of the Sample Proportion
 
 We now want to determine how much $\hat{p}$ varies from one sample to another.
 
@@ -457,7 +457,7 @@ $$
 Since there are $n$ users:
 
 $$
-Var(X_1+\cdots+X_n)
+Var(X_1+X_2+\cdots+X_n)
 =
 np(1-p)
 $$
@@ -468,7 +468,9 @@ $$
 Var(\hat{p})
 =
 \frac{1}{n^2}
-\left[np(1-p)\right]
+\left[
+np(1-p)
+\right]
 $$
 
 Cancel one factor of $n$:
@@ -483,7 +485,7 @@ $$
 
 ---
 
-### 6. Deriving the Standard Error
+## 6. Deriving the Standard Error
 
 The standard deviation of an estimator is called its **standard error**.
 
@@ -535,7 +537,7 @@ SE
 }
 $$
 
-This is the formula used in the problem.
+This is the standard error formula used in the problem.
 
 ---
 
@@ -579,7 +581,7 @@ $$
 -1.959964
 $$
 
-and
+and:
 
 $$
 +1.959964
@@ -592,13 +594,13 @@ P(-1.959964\leq Z\leq1.959964)
 \approx0.95
 $$
 
-Substitute:
+Substituting:
 
 $$
 Z=\frac{\hat{p}-p}{SE}
 $$
 
-giving:
+gives:
 
 $$
 P
@@ -660,7 +662,8 @@ The lower bound is:
 
 $$
 \boxed{
-Lower=
+Lower
+=
 \hat{p}-1.959964SE
 }
 $$
@@ -669,14 +672,15 @@ The upper bound is:
 
 $$
 \boxed{
-Upper=
+Upper
+=
 \hat{p}+1.959964SE
 }
 $$
 
 ---
 
-# 🔢 Complete Example
+# 🔢 Complete Numerical Example
 
 Suppose:
 
@@ -692,11 +696,15 @@ $$
 
 ### Step 1: Calculate the Point Estimate
 
+The sample click rate is:
+
 $$
 \hat{p}
 =
 \frac{clicks}{n}
 $$
+
+Substituting the values:
 
 $$
 \hat{p}
@@ -704,15 +712,19 @@ $$
 \frac{45}{1000}
 $$
 
+Therefore:
+
 $$
 \boxed{\hat{p}=0.045}
 $$
 
-As a percentage:
+To convert this into a percentage:
 
 $$
 0.045\times100=4.5\%
 $$
+
+So the observed click-through rate is **4.5%**.
 
 ---
 
@@ -738,18 +750,25 @@ SE
 }
 $$
 
+Simplifying:
+
 $$
+SE
 =
 \sqrt{
 \frac{0.045(0.955)}{1000}
 }
 $$
 
+Therefore:
+
 $$
-\approx0.006556
+SE
+\approx
+0.006556
 $$
 
-Therefore:
+So:
 
 $$
 \boxed{SE\approx0.006556}
@@ -765,7 +784,7 @@ $$
 ME=z\times SE
 $$
 
-where:
+For a 95% confidence interval:
 
 $$
 z=1.959964
@@ -779,6 +798,8 @@ ME
 1.959964\times0.006556
 $$
 
+So:
+
 $$
 \boxed{ME\approx0.012849}
 $$
@@ -787,13 +808,19 @@ $$
 
 ### Step 4: Calculate the Lower Bound
 
+The lower bound is:
+
 $$
 Lower=\hat{p}-ME
 $$
 
+Substituting:
+
 $$
 Lower=0.045-0.012849
 $$
+
+Therefore:
 
 $$
 \boxed{Lower\approx0.032151}
@@ -803,51 +830,77 @@ $$
 
 ### Step 5: Calculate the Upper Bound
 
+The upper bound is:
+
 $$
 Upper=\hat{p}+ME
 $$
+
+Substituting:
 
 $$
 Upper=0.045+0.012849
 $$
 
+Therefore:
+
 $$
 \boxed{Upper\approx0.057849}
 $$
 
-Therefore, the final result is:
+---
+
+## ✅ Final Result
+
+The final confidence interval is:
 
 $$
 \boxed{
-0.045000\quad0.032151\quad0.057849
+0.045000
+\quad
+0.032151
+\quad
+0.057849
 }
 $$
 
-Or in percentage form:
+In percentage form:
 
 $$
 \boxed{
-4.5\%\quad[3.2151\%,5.7849\%]
+4.5\%
+\quad
+[3.2151\%,5.7849\%]
 }
 $$
+
+This means the observed click rate is **4.5%**, and the calculated 95% confidence interval extends from approximately **3.2151% to 5.7849%**.
 
 ---
 
 # 🧠 Complete Derivation at a Glance
 
-The entire derivation can be summarized as:
+The entire derivation can be summarized as follows.
+
+Each user's outcome is Bernoulli:
 
 $$
 X_i\in\{0,1\}
 $$
 
+Expected value:
+
 $$
 E[X_i]=p
 $$
 
+Variance:
+
 $$
 Var(X_i)=p(1-p)
 $$
+
+Sample proportion:
 
 $$
 \hat{p}
@@ -856,25 +909,33 @@ $$
 \sum_{i=1}^{n}X_i
 $$
 
+Variance of the sample proportion:
+
 $$
 Var(\hat{p})
 =
 \frac{p(1-p)}{n}
 $$
 
+Standard error:
+
 $$
 SE(\hat{p})
 =
-\sqrt{\frac{p(1-p)}{n}}
+\sqrt{
+\frac{p(1-p)}{n}
+}
 $$
 
-Since $p$ is unknown:
+Since the true $p$ is unknown, replace it with $\hat{p}$:
 
 $$
 \boxed{
 SE
 =
-\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+\sqrt{
+\frac{\hat{p}(1-\hat{p})}{n}
+}
 }
 $$
 
@@ -890,7 +951,7 @@ CI_{95\%}
 }
 $$
 
-Therefore:
+Substituting the standard error:
 
 $$
 \boxed{
@@ -905,15 +966,43 @@ CI_{95\%}
 }
 $$
 
-This is the complete formula implemented by the program.
+Therefore:
+
+$$
+\boxed{
+Lower
+=
+\hat{p}
+-
+1.959964
+\sqrt{
+\frac{\hat{p}(1-\hat{p})}{n}
+}
+}
+$$
+
+and:
+
+$$
+\boxed{
+Upper
+=
+\hat{p}
++
+1.959964
+\sqrt{
+\frac{\hat{p}(1-\hat{p})}{n}
+}
+}
+$$
 
 ---
 
 ## ⚠️ Technical Note
 
-The interval derived above is called the **Wald confidence interval** for a binomial proportion.
+The confidence interval derived above is called the **Wald confidence interval** for a binomial proportion.
 
-It is simple and computationally efficient, which is why it is used in this problem.
+It is simple and computationally efficient, which is why it is used in this programming problem.
 
 However, the Wald interval can perform poorly when:
 
@@ -923,7 +1012,7 @@ However, the Wald interval can perform poorly when:
 
 For real-world statistical analysis, alternatives such as the **Wilson interval** or **exact binomial confidence interval** are often preferred.
 
-For this programming problem, however, we must use the specified Wald formula.
+For this problem, however, the required formula is specifically the Wald interval, so we use it exactly as specified.
 ---
 
 # 6. What Does `z = 1.959964` Mean?

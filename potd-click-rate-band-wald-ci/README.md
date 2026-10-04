@@ -113,12 +113,6 @@ $$
 \boxed{\hat p=0.045}
 $$
 
-or:
-
-<div align="center">
-\boxed{4.5\%}
-</div>
-
 ---
 
 # 3. Why Do We Need a Confidence Interval?

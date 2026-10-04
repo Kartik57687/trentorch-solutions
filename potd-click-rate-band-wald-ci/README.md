@@ -306,9 +306,7 @@ $$
 we get:
 
 $$
-Var(\hat{p})
-$$ = 
-$$
+Var(\hat{p})=
 \frac{1}{n^2}
 Var(X_1 + X_2 + \cdots + X_n)
 $$
@@ -328,8 +326,8 @@ $$
 
 we get:
 
-$$\sum_{i=1}^{n} Var(X_i)
-= np(1-p)
+$$
+\sum_{i=1}^{n} Var(X_i) = np(1-p)
 $$
 
 Therefore:
@@ -342,7 +340,6 @@ $$
 Simplifying:
 
 $$
-
 Var(\hat{p})=\frac{p(1-p)}{n}
 $$
 

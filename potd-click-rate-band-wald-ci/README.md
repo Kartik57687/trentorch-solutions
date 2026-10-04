@@ -684,8 +684,7 @@ $$
 ## Step 3: Calculate the Lower Bound
 
 $$
-lower
-=
+lower=
 0.045-(1.959964)(0.006556)
 $$
 
@@ -698,8 +697,7 @@ $$
 ## Step 4: Calculate the Upper Bound
 
 $$
-upper
-=
+upper=
 0.045+(1.959964)(0.006556)
 $$
 

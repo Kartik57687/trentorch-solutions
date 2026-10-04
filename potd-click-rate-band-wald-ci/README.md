@@ -243,79 +243,66 @@ Narrow confidence interval
 # 5. Where Does the Standard Error Formula Come From?
 ## 📐 Detailed Mathematical Derivation
 
-The goal is to derive the formula used to calculate the 95% confidence interval for the click-through rate:
+The goal is to derive the formula used to calculate the 95% confidence interval for the click-through rate.
 
-$$
-\hat{p} \pm z \cdot SE
-$$
+The final formula is:
+
+    Confidence Interval = p_hat ± z × SE
 
 where:
 
-$$
-\hat{p} = \frac{clicks}{n}
-$$
+    p_hat = clicks / n
 
 and:
 
-$$
-SE = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
-$$
+    SE = sqrt( p_hat × (1 - p_hat) / n )
+
+For a 95% confidence interval:
+
+    z = 1.959964
 
 ---
 
 ## 1. Model Each User's Click
 
-For every user, define a random variable $X_i$:
+For every user, define a variable X_i.
 
-$$
-X_i =
-\begin{cases}
-1, & \text{if the user clicks} \\
-0, & \text{if the user does not click}
-\end{cases}
-$$
+    X_i = 1  →  if the user clicks
+    X_i = 0  →  if the user does not click
 
-Let $p$ be the true probability that a user clicks the advertisement.
+Let p be the true probability that a user clicks the advertisement.
 
 Therefore:
 
-$$
-P(X_i=1)=p
-$$
+    P(X_i = 1) = p
 
 and:
 
-$$
-P(X_i=0)=1-p
-$$
+    P(X_i = 0) = 1 - p
 
-This is called a **Bernoulli random variable**.
+This type of random variable is called a Bernoulli random variable.
 
 ---
 
 ## 2. Expected Value of One User's Click
 
-The expected value of a random variable is:
+The expected value represents the average value we would obtain if we repeated the experiment many times.
 
-$$
-E[X_i] = \sum_x xP(X_i=x)
-$$
+For a Bernoulli random variable:
 
-For our Bernoulli random variable, $X_i$ can only be $0$ or $1$:
-
-$$
-E[X_i]
-=
-(1)(p)+(0)(1-p)
-$$
+    E[X_i] = (1 × p) + (0 × (1 - p))
 
 Therefore:
 
-$$
-\boxed{E[X_i]=p}
-$$
+    E[X_i] = p
 
-So, the average value of the click variable is equal to the true click probability.
+So:
+
+    E[X_i] = p
+
+This means that the expected value of a user's click indicator is equal to the true click probability.
+
+For example, if the true click probability is 0.05, then over a very large number of users, the average value of X_i will approach 0.05.
 
 ---
 
@@ -325,358 +312,275 @@ Variance measures how much a random variable varies around its expected value.
 
 The variance formula is:
 
-$$
-Var(X_i)=E[X_i^2]-(E[X_i])^2
-$$
+    Var(X_i) = E[X_i²] - (E[X_i])²
 
-Since $X_i$ can only be $0$ or $1$:
+Since X_i can only be 0 or 1:
 
-$$
-X_i^2=X_i
-$$
-
-because:
-
-$$
-0^2=0
-$$
-
-and:
-
-$$
-1^2=1
-$$
+    0² = 0
+    1² = 1
 
 Therefore:
 
-$$
-E[X_i^2]=E[X_i]=p
-$$
+    X_i² = X_i
 
-We already know:
+So:
 
-$$
-E[X_i]=p
-$$
+    E[X_i²] = E[X_i]
 
-Hence:
+And we already know:
 
-$$
-Var(X_i)=p-p^2
-$$
+    E[X_i] = p
 
-Factoring:
+Therefore:
 
-$$
-\boxed{Var(X_i)=p(1-p)}
-$$
+    E[X_i²] = p
+
+Substituting into the variance formula:
+
+    Var(X_i) = p - p²
+
+Factor out p:
+
+    Var(X_i) = p(1 - p)
+
+Therefore:
+
+    Var(X_i) = p(1 - p)
+
+This is the variance of one Bernoulli trial.
 
 ---
 
 ## 4. Calculate the Observed Click Rate
 
-Suppose we observe $n$ users.
+Suppose we observe n users.
 
 The total number of clicks is:
 
-$$
-X_1+X_2+\cdots+X_n
-$$
+    X_1 + X_2 + X_3 + ... + X_n
 
 Therefore, the observed click rate is:
 
-$$
-\hat{p}
-=
-\frac{X_1+X_2+\cdots+X_n}{n}
-$$
+    p_hat = (X_1 + X_2 + ... + X_n) / n
 
-or equivalently:
+Since the sum represents the total number of clicks:
 
-$$
-\boxed{
-\hat{p}=\frac{clicks}{n}
-}
-$$
+    p_hat = clicks / n
 
-Here, $\hat{p}$ is called the **sample proportion** or **point estimate** of the true probability $p$.
+Here:
+
+    p_hat = observed click rate
+    clicks = number of successful clicks
+    n = total number of users
+
+p_hat is called the sample proportion or point estimate.
+
+It is our estimate of the unknown true probability p.
 
 ---
 
-## 5. Variance of the Sample Proportion
+## 5. Derive the Variance of the Sample Proportion
 
-We now want to determine how much $\hat{p}$ varies from one sample to another.
+We now want to know:
+
+    How much can p_hat vary from one sample to another?
 
 We have:
 
-$$
-\hat{p}
-=
-\frac{X_1+X_2+\cdots+X_n}{n}
-$$
+    p_hat = (X_1 + X_2 + ... + X_n) / n
 
 Therefore:
 
-$$
-Var(\hat{p})
-=
-Var\left(
-\frac{X_1+X_2+\cdots+X_n}{n}
-\right)
-$$
+    Var(p_hat)
+    = Var((X_1 + X_2 + ... + X_n) / n)
 
 Using the property:
 
-$$
-Var(cX)=c^2Var(X)
-$$
+    Var(cX) = c² × Var(X)
 
 we get:
 
-$$
-Var(\hat{p})
-=
-\frac{1}{n^2}
-Var(X_1+X_2+\cdots+X_n)
-$$
-
-Assuming that the users' click outcomes are independent:
-
-$$
-Var(X_1+X_2+\cdots+X_n)
-=
-Var(X_1)+Var(X_2)+\cdots+Var(X_n)
-$$
-
-Each user has:
-
-$$
-Var(X_i)=p(1-p)
-$$
-
-Since there are $n$ users:
-
-$$
-Var(X_1+X_2+\cdots+X_n)
-=
-np(1-p)
-$$
-
-Therefore:
-
-$$
-Var(\hat{p})
-=
-\frac{1}{n^2}
-\left[
-np(1-p)
-\right]
-$$
-
-Cancel one factor of $n$:
-
-$$
-\boxed{
-Var(\hat{p})
-=
-\frac{p(1-p)}{n}
-}
-$$
+    Var(p_hat)
+    = (1 / n²) × Var(X_1 + X_2 + ... + X_n)
 
 ---
 
-## 6. Deriving the Standard Error
+## 6. Add the Variances
 
-The standard deviation of an estimator is called its **standard error**.
+Assume that the users' click outcomes are independent.
+
+For independent random variables:
+
+    Var(X_1 + X_2 + ... + X_n)
+    = Var(X_1) + Var(X_2) + ... + Var(X_n)
+
+We already derived that:
+
+    Var(X_i) = p(1 - p)
+
+Every user has the same variance.
+
+Since there are n users:
+
+    Var(X_1 + X_2 + ... + X_n)
+    = n × p(1 - p)
 
 Therefore:
 
-$$
-SE(\hat{p})
-=
-\sqrt{Var(\hat{p})}
-$$
+    Var(p_hat)
+    = (1 / n²) × [n × p(1 - p)]
 
-Substituting the variance we derived:
+Cancel one n:
 
-$$
-SE(\hat{p})
-=
-\sqrt{
-\frac{p(1-p)}{n}
-}
-$$
+    Var(p_hat)
+    = p(1 - p) / n
 
-Thus:
+Therefore:
 
-$$
-\boxed{
-SE(\hat{p})
-=
-\sqrt{\frac{p(1-p)}{n}}
-}
-$$
+    Var(p_hat) = p(1 - p) / n
 
-However, there is a problem.
-
-We do not know the true value of $p$.
-
-The entire purpose of collecting data is to estimate $p$.
-
-Therefore, we replace the unknown $p$ with our observed estimate $\hat{p}$.
-
-Hence:
-
-$$
-\boxed{
-SE
-=
-\sqrt{
-\frac{\hat{p}(1-\hat{p})}{n}
-}
-}
-$$
-
-This is the standard error formula used in the problem.
+This is the variance of the sample proportion.
 
 ---
 
-## 7. Why Do We Use a Normal Distribution?
+## 7. Derive the Standard Error
 
-For sufficiently large sample sizes, the **Central Limit Theorem (CLT)** tells us that the sampling distribution of the sample proportion $\hat{p}$ is approximately normal.
+The standard error is the standard deviation of an estimator.
 
 Therefore:
 
-$$
-\hat{p}
-\approx
-N
-\left(
-p,
-\frac{p(1-p)}{n}
-\right)
-$$
+    SE(p_hat) = sqrt(Var(p_hat))
 
-After standardizing:
+We already know:
 
-$$
-Z
-=
-\frac{\hat{p}-p}{SE}
-$$
+    Var(p_hat) = p(1 - p) / n
 
-approximately follows the standard normal distribution:
+Therefore:
 
-$$
-Z\sim N(0,1)
-$$
+    SE(p_hat)
+    = sqrt(p(1 - p) / n)
+
+So:
+
+    SE(p_hat) = sqrt(p(1 - p) / n)
 
 ---
 
-## 8. The 95% Confidence Level
+## 8. Replace p with p_hat
 
-For a standard normal distribution, approximately 95% of the probability lies between:
+There is a problem with the formula above.
 
-$$
--1.959964
-$$
+We do not know the true value of p.
 
-and:
+Remember:
 
-$$
-+1.959964
-$$
+    p = true click probability
+
+The entire purpose of our experiment is to estimate p.
+
+However, we do know the observed value:
+
+    p_hat = clicks / n
+
+Therefore, we estimate the standard error by replacing p with p_hat.
+
+So:
+
+    SE = sqrt(p_hat × (1 - p_hat) / n)
+
+This is the formula used in the problem.
 
 Therefore:
 
-$$
-P(-1.959964\leq Z\leq1.959964)
-\approx0.95
-$$
+    SE = sqrt( p_hat × (1 - p_hat) / n )
+
+---
+
+## 9. Why Can We Use the Normal Distribution?
+
+For a sufficiently large sample size, the Central Limit Theorem tells us that the sampling distribution of p_hat is approximately normal.
+
+In other words, if we repeatedly collect samples of size n and calculate p_hat for each sample, the values of p_hat will approximately form a normal distribution.
+
+The center of this distribution is:
+
+    p
+
+and its standard deviation is approximately:
+
+    SE = sqrt(p(1 - p) / n)
+
+Therefore, p_hat is approximately normally distributed around the true value p.
+
+---
+
+## 10. Standardizing the Distribution
+
+For a normal distribution, we can convert our value into a standard normal variable.
+
+The standardized value is:
+
+    Z = (p_hat - p) / SE
+
+For a standard normal distribution:
+
+    Z ~ N(0, 1)
+
+For a 95% confidence interval, approximately 95% of the standard normal distribution lies between:
+
+    -1.959964 and +1.959964
+
+Therefore:
+
+    -1.959964 <= Z <= 1.959964
 
 Substituting:
 
-$$
-Z=\frac{\hat{p}-p}{SE}
-$$
+    Z = (p_hat - p) / SE
 
-gives:
+we get:
 
-$$
-P
-\left(
--1.959964
-\leq
-\frac{\hat{p}-p}{SE}
-\leq
-1.959964
-\right)
-\approx0.95
-$$
+    -1.959964
+    <=
+    (p_hat - p) / SE
+    <=
+    1.959964
 
 ---
 
-## 9. Rearranging the Inequality
+## 11. Rearrange the Inequality
 
-Starting with:
+Start with:
 
-$$
--1.959964
-\leq
-\frac{\hat{p}-p}{SE}
-\leq
-1.959964
-$$
+    -1.959964 <= (p_hat - p) / SE <= 1.959964
 
-Multiply all parts by $SE$:
+Multiply everything by SE:
 
-$$
--1.959964SE
-\leq
-\hat{p}-p
-\leq
-1.959964SE
-$$
+    -1.959964 × SE
+    <=
+    p_hat - p
+    <=
+    1.959964 × SE
 
-Rearranging to isolate $p$:
+We want p in the middle.
 
-$$
-\hat{p}-1.959964SE
-\leq
-p
-\leq
-\hat{p}+1.959964SE
-$$
+After rearranging:
+
+    p_hat - 1.959964 × SE
+    <=
+    p
+    <=
+    p_hat + 1.959964 × SE
 
 Therefore, the 95% confidence interval is:
 
-$$
-\boxed{
-\hat{p}
-\pm
-1.959964SE
-}
-$$
+    p_hat ± 1.959964 × SE
 
-The lower bound is:
+So:
 
-$$
-\boxed{
-Lower
-=
-\hat{p}-1.959964SE
-}
-$$
+    Lower = p_hat - 1.959964 × SE
 
-The upper bound is:
-
-$$
-\boxed{
-Upper
-=
-\hat{p}+1.959964SE
-}
-$$
+    Upper = p_hat + 1.959964 × SE
 
 ---
 
@@ -684,335 +588,212 @@ $$
 
 Suppose:
 
-$$
-n=1000
-$$
+    n = 1000
 
 and:
 
-$$
-clicks=45
-$$
+    clicks = 45
 
-### Step 1: Calculate the Point Estimate
+---
+
+## Step 1: Calculate p_hat
 
 The sample click rate is:
 
-$$
-\hat{p}
-=
-\frac{clicks}{n}
-$$
-
-Substituting the values:
-
-$$
-\hat{p}
-=
-\frac{45}{1000}
-$$
-
-Therefore:
-
-$$
-\boxed{\hat{p}=0.045}
-$$
-
-To convert this into a percentage:
-
-$$
-0.045\times100=4.5\%
-$$
-
-So the observed click-through rate is **4.5%**.
-
----
-
-### Step 2: Calculate the Standard Error
-
-The formula is:
-
-$$
-SE
-=
-\sqrt{
-\frac{\hat{p}(1-\hat{p})}{n}
-}
-$$
+    p_hat = clicks / n
 
 Substitute the values:
 
-$$
-SE
-=
-\sqrt{
-\frac{0.045(1-0.045)}{1000}
-}
-$$
-
-Simplifying:
-
-$$
-SE
-=
-\sqrt{
-\frac{0.045(0.955)}{1000}
-}
-$$
+    p_hat = 45 / 1000
 
 Therefore:
 
-$$
-SE
-\approx
-0.006556
-$$
+    p_hat = 0.045
 
-So:
+As a percentage:
 
-$$
-\boxed{SE\approx0.006556}
-$$
+    0.045 × 100 = 4.5%
+
+So the observed click-through rate is:
+
+    4.5%
 
 ---
 
-### Step 3: Calculate the Margin of Error
+## Step 2: Calculate the Standard Error
+
+The formula is:
+
+    SE = sqrt( p_hat × (1 - p_hat) / n )
+
+Substitute:
+
+    SE = sqrt( 0.045 × (1 - 0.045) / 1000 )
+
+Calculate:
+
+    1 - 0.045 = 0.955
+
+Therefore:
+
+    SE = sqrt( 0.045 × 0.955 / 1000 )
+
+    SE ≈ 0.006556
+
+So:
+
+    SE ≈ 0.006556
+
+---
+
+## Step 3: Calculate the Margin of Error
 
 The margin of error is:
 
-$$
-ME=z\times SE
-$$
+    Margin of Error = z × SE
 
 For a 95% confidence interval:
 
-$$
-z=1.959964
-$$
+    z = 1.959964
 
 Therefore:
 
-$$
-ME
-=
-1.959964\times0.006556
-$$
+    Margin of Error
+    = 1.959964 × 0.006556
 
-So:
-
-$$
-\boxed{ME\approx0.012849}
-$$
+    Margin of Error ≈ 0.012849
 
 ---
 
-### Step 4: Calculate the Lower Bound
+## Step 4: Calculate the Lower Bound
 
 The lower bound is:
 
-$$
-Lower=\hat{p}-ME
-$$
+    Lower = p_hat - Margin of Error
 
-Substituting:
+Substitute:
 
-$$
-Lower=0.045-0.012849
-$$
+    Lower = 0.045 - 0.012849
 
 Therefore:
 
-$$
-\boxed{Lower\approx0.032151}
-$$
+    Lower ≈ 0.032151
 
 ---
 
-### Step 5: Calculate the Upper Bound
+## Step 5: Calculate the Upper Bound
 
 The upper bound is:
 
-$$
-Upper=\hat{p}+ME
-$$
+    Upper = p_hat + Margin of Error
 
-Substituting:
+Substitute:
 
-$$
-Upper=0.045+0.012849
-$$
+    Upper = 0.045 + 0.012849
 
 Therefore:
 
-$$
-\boxed{Upper\approx0.057849}
-$$
+    Upper ≈ 0.057849
 
 ---
 
-## ✅ Final Result
+# ✅ Final Result
 
-The final confidence interval is:
+The three values are:
 
-$$
-\boxed{
-0.045000
-\quad
-0.032151
-\quad
-0.057849
-}
-$$
+    p_hat = 0.045000
+    Lower = 0.032151
+    Upper = 0.057849
+
+Therefore, the program outputs:
+
+    0.045000 0.032151 0.057849
 
 In percentage form:
 
-$$
-\boxed{
-4.5\%
-\quad
-[3.2151\%,5.7849\%]
-}
-$$
+    4.5% [3.2151%, 5.7849%]
 
-This means the observed click rate is **4.5%**, and the calculated 95% confidence interval extends from approximately **3.2151% to 5.7849%**.
+This means:
+
+    Observed click rate = 4.5%
+
+    Lower confidence bound ≈ 3.2151%
+
+    Upper confidence bound ≈ 5.7849%
 
 ---
 
 # 🧠 Complete Derivation at a Glance
 
-The entire derivation can be summarized as follows.
+The entire derivation can be summarized as follows:
 
-Each user's outcome is Bernoulli:
+    X_i = 1 if the user clicks
+    X_i = 0 if the user does not click
 
-$$
-X_i\in\{0,1\}
-$$
+For one user:
 
-Expected value:
+    E[X_i] = p
 
-$$
-E[X_i]=p
-$$
+    Var(X_i) = p(1 - p)
 
-Variance:
+For n users:
 
-$$
-Var(X_i)=p(1-p)
-$$
-
-Sample proportion:
-
-$$
-\hat{p}
-=
-\frac{1}{n}
-\sum_{i=1}^{n}X_i
-$$
-
-Variance of the sample proportion:
-
-$$
-Var(\hat{p})
-=
-\frac{p(1-p)}{n}
-$$
-
-Standard error:
-
-$$
-SE(\hat{p})
-=
-\sqrt{
-\frac{p(1-p)}{n}
-}
-$$
-
-Since the true $p$ is unknown, replace it with $\hat{p}$:
-
-$$
-\boxed{
-SE
-=
-\sqrt{
-\frac{\hat{p}(1-\hat{p})}{n}
-}
-}
-$$
-
-Using the normal approximation:
-
-$$
-\boxed{
-CI_{95\%}
-=
-\hat{p}
-\pm
-1.959964\times SE
-}
-$$
-
-Substituting the standard error:
-
-$$
-\boxed{
-CI_{95\%}
-=
-\hat{p}
-\pm
-1.959964
-\sqrt{
-\frac{\hat{p}(1-\hat{p})}{n}
-}
-}
-$$
+    p_hat = (X_1 + X_2 + ... + X_n) / n
 
 Therefore:
 
-$$
-\boxed{
-Lower
-=
-\hat{p}
--
-1.959964
-\sqrt{
-\frac{\hat{p}(1-\hat{p})}{n}
-}
-}
-$$
+    Var(p_hat) = p(1 - p) / n
 
-and:
+Taking the square root:
 
-$$
-\boxed{
-Upper
-=
-\hat{p}
-+
-1.959964
-\sqrt{
-\frac{\hat{p}(1-\hat{p})}{n}
-}
-}
-$$
+    SE(p_hat) = sqrt(p(1 - p) / n)
+
+Since p is unknown, replace it with p_hat:
+
+    SE = sqrt(p_hat × (1 - p_hat) / n)
+
+For a 95% confidence interval:
+
+    z = 1.959964
+
+Therefore:
+
+    Confidence Interval
+    = p_hat ± 1.959964 × SE
+
+Substituting SE:
+
+    Confidence Interval
+    = p_hat ± 1.959964 ×
+      sqrt(p_hat × (1 - p_hat) / n)
+
+Therefore:
+
+    Lower
+    = p_hat - 1.959964 ×
+      sqrt(p_hat × (1 - p_hat) / n)
+
+    Upper
+    = p_hat + 1.959964 ×
+      sqrt(p_hat × (1 - p_hat) / n)
 
 ---
 
 ## ⚠️ Technical Note
 
-The confidence interval derived above is called the **Wald confidence interval** for a binomial proportion.
+The confidence interval used here is called the **Wald confidence interval** for a binomial proportion.
 
 It is simple and computationally efficient, which is why it is used in this programming problem.
 
 However, the Wald interval can perform poorly when:
 
-- $n$ is small
-- $\hat{p}$ is very close to $0$
-- $\hat{p}$ is very close to $1$
+- n is small
+- p_hat is very close to 0
+- p_hat is very close to 1
 
-For real-world statistical analysis, alternatives such as the **Wilson interval** or **exact binomial confidence interval** are often preferred.
+For real-world statistical analysis, methods such as the **Wilson interval** or **exact binomial confidence interval** are often preferred.
 
-For this problem, however, the required formula is specifically the Wald interval, so we use it exactly as specified.
+For this programming problem, however, the required formula is specifically the Wald interval, so we use it exactly as specified.
 ---
 
 # 6. What Does `z = 1.959964` Mean?

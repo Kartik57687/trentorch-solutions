@@ -292,8 +292,8 @@ Starting with:
 
 $$
 Var(\hat{p})
+$$ = 
 $$
-=$$
 Var\left(
 \frac{X_1 + X_2 + \cdots + X_n}{n}
 \right)
@@ -309,7 +309,8 @@ we get:
 
 $$
 Var(\hat{p})
-=
+$$ = 
+$$
 \frac{1}{n^2}
 Var(X_1 + X_2 + \cdots + X_n)
 $$

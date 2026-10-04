@@ -317,8 +317,7 @@ For independent users, variances add:
 
 $$
 Var(X_1 + X_2 + \cdots + X_n)
-=
-\sum_{i=1}^{n} Var(X_i)
+=\sum_{i=1}^{n} Var(X_i)
 $$
 
 Since:
@@ -329,19 +328,14 @@ $$
 
 we get:
 
-$$
-
-\sum_{i=1}^{n} Var(X_i)
-=
-np(1-p)
+$$\sum_{i=1}^{n} Var(X_i)
+= np(1-p)
 $$
 
 Therefore:
 
 $$
-
-Var(\hat{p})
-=
+Var(\hat{p})=
 \frac{np(1-p)}{n^2}
 $$
 
@@ -349,9 +343,7 @@ Simplifying:
 
 $$
 
-Var(\hat{p})
-=
-\frac{p(1-p)}{n}
+Var(\hat{p})=\frac{p(1-p)}{n}
 $$
 
 ---
@@ -361,24 +353,21 @@ $$
 The standard error is the square root of the variance:
 
 $$
-SE(\hat{p})
-=
+SE(\hat{p})=
 \sqrt{Var(\hat{p})}
 $$
 
 Therefore:
 
 $$
-SE(\hat{p})
-=
+SE(\hat{p})=
 \sqrt{\frac{p(1-p)}{n}}
 $$
 
 Since the true value of `p` is unknown, we replace it with the observed estimate `p_hat`:
 
 $$
-SE
-=
+SE=
 \sqrt{
 \frac{\hat{p}(1-\hat{p})}{n}
 }
@@ -395,8 +384,7 @@ For a sufficiently large sample, the Central Limit Theorem allows us to approxim
 The standardized value is:
 
 $$
-Z
-=
+Z=
 \frac{\hat{p}-p}{SE}
 $$
 
@@ -439,8 +427,7 @@ $$
 Therefore:
 
 $$
-CI_{95\%}
-=
+CI_{95\%}=
 \hat{p}
 \pm
 1.959964SE
@@ -453,8 +440,7 @@ $$
 Substituting the standard error:
 
 $$
-CI_{95\%}
-=
+CI_{95\%}=
 \hat{p}
 \pm
 1.959964
@@ -466,10 +452,8 @@ $$
 Therefore:
 
 $$
-Lower
-=
-\hat{p}
--
+Lower=
+\hat{p}-
 1.959964
 \sqrt{
 \frac{\hat{p}(1-\hat{p})}{n}
@@ -477,10 +461,8 @@ Lower
 $$
 
 $$
-Upper
-=
-\hat{p}
-+
+Upper=
+\hat{p}+
 1.959964
 \sqrt{
 \frac{\hat{p}(1-\hat{p})}{n}

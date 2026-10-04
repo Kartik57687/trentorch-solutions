@@ -291,7 +291,7 @@ We want to find the variance of `p_hat`.
 Starting with:
 
 $$
-\Var(\hat{p})
+Var(\hat{p})
 $$
 =$$
 Var\left(

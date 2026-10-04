@@ -1,7 +1,7 @@
 # The Click-Rate Band
 
-**Difficulty:** Easy
-**Category:** Probability & Statistics
+**Difficulty:** Easy<br>
+**Category:** Probability & Statistics<br>
 **Language:** Python
 
 ---

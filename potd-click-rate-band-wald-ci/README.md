@@ -468,6 +468,7 @@ Upper=
 \frac{\hat{p}(1-\hat{p})}{n}
 }
 $$
+
 ---
 
 # 6. What Does `z = 1.959964` Mean?

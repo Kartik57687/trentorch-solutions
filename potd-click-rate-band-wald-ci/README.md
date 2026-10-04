@@ -440,13 +440,7 @@ $$
 Substituting the standard error:
 
 $$
-CI_{95\%}=
-\hat{p}
-\pm
-1.959964
-\sqrt{
-\frac{\hat{p}(1-\hat{p})}{n}
-}
+CI_{95\%}=\hat{p}\pm1.959964\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
 $$
 
 Therefore:

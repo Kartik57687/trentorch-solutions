@@ -29,7 +29,9 @@ For example:
 
 Both have exactly the same observed CTR:
 
-$$0.5 = 50%$$
+<div align="center">
+**0.5 = 50%**
+</div>
 
 But the second estimate is much more reliable because it is based on a much larger sample.
 

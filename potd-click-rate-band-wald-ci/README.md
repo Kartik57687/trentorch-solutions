@@ -319,6 +319,7 @@ $$
 
 This is the standard error used by the problem.
 
+
 ---
 
 # 6. What Does `z = 1.959964` Mean?

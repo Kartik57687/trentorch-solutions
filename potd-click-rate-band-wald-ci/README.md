@@ -291,9 +291,9 @@ We want to find the variance of `p_hat`.
 Starting with:
 
 $$
-Var(\hat{p})
+\Var(\hat{p})
 $$
-=
+=$$
 Var\left(
 \frac{X_1 + X_2 + \cdots + X_n}{n}
 \right)

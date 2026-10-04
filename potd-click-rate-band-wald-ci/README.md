@@ -116,9 +116,7 @@ $$
 or:
 
 <div align="center">
-$$
 \boxed{4.5\%}
-$$
 </div>
 
 ---

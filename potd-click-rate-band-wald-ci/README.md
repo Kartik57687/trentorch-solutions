@@ -292,7 +292,7 @@ Starting with:
 
 $$
 Var(\hat{p})
-$$ = 
+=$$ 
 $$
 Var\left(
 \frac{X_1 + X_2 + \cdots + X_n}{n}

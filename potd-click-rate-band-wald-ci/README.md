@@ -245,81 +245,689 @@ Narrow confidence interval
 ---
 
 # 5. Where Does the Standard Error Formula Come From?
+## 📐 Detailed Mathematical Derivation
 
-The problem gives:
-
-$$
-SE=\sqrt{\frac{\hat p(1-\hat p)}{n}}
-$$
-
-But it is useful to understand why this formula exists.
-
-Suppose every advertisement impression can be represented as a **Bernoulli random variable**:
+The goal is to derive the formula used to calculate the 95% confidence interval for the click-through rate:
 
 $$
-X=
+\hat{p} \pm z \cdot SE
+$$
+
+where:
+
+$$
+\hat{p} = \frac{clicks}{n}
+$$
+
+and
+
+$$
+SE = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+$$
+
+---
+
+### 1. Model Each User's Click
+
+For every user, define a random variable $X_i$:
+
+$$
+X_i =
 \begin{cases}
-1 & \text{if the user clicks}\\
-0 & \text{if the user does not click}
+1, & \text{if the user clicks} \\
+0, & \text{if the user does not click}
 \end{cases}
 $$
 
-Let the true probability of a click be:
+Let $p$ be the true probability that a user clicks the advertisement.
+
+Therefore:
 
 $$
+P(X_i=1)=p
+$$
+
+and
+
+$$
+P(X_i=0)=1-p
+$$
+
+This is called a **Bernoulli random variable**.
+
+---
+
+### 2. Expected Value of One User's Click
+
+The expected value of a random variable is:
+
+$$
+E[X_i] = \sum_x xP(X_i=x)
+$$
+
+For our Bernoulli variable, $X_i$ can only be $0$ or $1$:
+
+$$
+E[X_i]
+=
+(1)(p)+(0)(1-p)
+$$
+
+Therefore:
+
+$$
+\boxed{E[X_i]=p}
+$$
+
+So, the average value of the click variable is equal to the true click probability.
+
+---
+
+### 3. Variance of One User's Click
+
+Variance measures how much a random variable varies around its expected value.
+
+The variance formula is:
+
+$$
+Var(X_i)=E[X_i^2]-(E[X_i])^2
+$$
+
+Since $X_i$ can only be $0$ or $1$:
+
+$$
+X_i^2=X_i
+$$
+
+because:
+
+$$
+0^2=0
+$$
+
+and
+
+$$
+1^2=1
+$$
+
+Therefore:
+
+$$
+E[X_i^2]=E[X_i]=p
+$$
+
+We already know:
+
+$$
+E[X_i]=p
+$$
+
+Hence:
+
+$$
+Var(X_i)=p-p^2
+$$
+
+Factoring:
+
+$$
+\boxed{Var(X_i)=p(1-p)}
+$$
+
+---
+
+### 4. Calculate the Observed Click Rate
+
+Suppose we observe $n$ users.
+
+The total number of clicks is:
+
+$$
+X_1+X_2+\cdots+X_n
+$$
+
+Therefore, the observed click rate is:
+
+$$
+\hat{p}
+=
+\frac{X_1+X_2+\cdots+X_n}{n}
+$$
+
+or equivalently:
+
+$$
+\boxed{
+\hat{p}=\frac{clicks}{n}
+}
+$$
+
+Here, $\hat{p}$ is called the **sample proportion** or **point estimate** of the true probability $p$.
+
+---
+
+### 5. Variance of the Sample Proportion
+
+We now want to determine how much $\hat{p}$ varies from one sample to another.
+
+We have:
+
+$$
+\hat{p}
+=
+\frac{X_1+X_2+\cdots+X_n}{n}
+$$
+
+Therefore:
+
+$$
+Var(\hat{p})
+=
+Var\left(
+\frac{X_1+X_2+\cdots+X_n}{n}
+\right)
+$$
+
+Using the property:
+
+$$
+Var(cX)=c^2Var(X)
+$$
+
+we get:
+
+$$
+Var(\hat{p})
+=
+\frac{1}{n^2}
+Var(X_1+X_2+\cdots+X_n)
+$$
+
+Assuming that the users' click outcomes are independent:
+
+$$
+Var(X_1+X_2+\cdots+X_n)
+=
+Var(X_1)+Var(X_2)+\cdots+Var(X_n)
+$$
+
+Each user has:
+
+$$
+Var(X_i)=p(1-p)
+$$
+
+Since there are $n$ users:
+
+$$
+Var(X_1+\cdots+X_n)
+=
+np(1-p)
+$$
+
+Therefore:
+
+$$
+Var(\hat{p})
+=
+\frac{1}{n^2}
+\left[np(1-p)\right]
+$$
+
+Cancel one factor of $n$:
+
+$$
+\boxed{
+Var(\hat{p})
+=
+\frac{p(1-p)}{n}
+}
+$$
+
+---
+
+### 6. Deriving the Standard Error
+
+The standard deviation of an estimator is called its **standard error**.
+
+Therefore:
+
+$$
+SE(\hat{p})
+=
+\sqrt{Var(\hat{p})}
+$$
+
+Substituting the variance we derived:
+
+$$
+SE(\hat{p})
+=
+\sqrt{
+\frac{p(1-p)}{n}
+}
+$$
+
+Thus:
+
+$$
+\boxed{
+SE(\hat{p})
+=
+\sqrt{\frac{p(1-p)}{n}}
+}
+$$
+
+However, there is a problem.
+
+We do not know the true value of $p$.
+
+The entire purpose of collecting data is to estimate $p$.
+
+Therefore, we replace the unknown $p$ with our observed estimate $\hat{p}$.
+
+Hence:
+
+$$
+\boxed{
+SE
+=
+\sqrt{
+\frac{\hat{p}(1-\hat{p})}{n}
+}
+}
+$$
+
+This is the formula used in the problem.
+
+---
+
+## 7. Why Do We Use a Normal Distribution?
+
+For sufficiently large sample sizes, the **Central Limit Theorem (CLT)** tells us that the sampling distribution of the sample proportion $\hat{p}$ is approximately normal.
+
+Therefore:
+
+$$
+\hat{p}
+\approx
+N
+\left(
+p,
+\frac{p(1-p)}{n}
+\right)
+$$
+
+After standardizing:
+
+$$
+Z
+=
+\frac{\hat{p}-p}{SE}
+$$
+
+approximately follows the standard normal distribution:
+
+$$
+Z\sim N(0,1)
+$$
+
+---
+
+## 8. The 95% Confidence Level
+
+For a standard normal distribution, approximately 95% of the probability lies between:
+
+$$
+-1.959964
+$$
+
+and
+
+$$
++1.959964
+$$
+
+Therefore:
+
+$$
+P(-1.959964\leq Z\leq1.959964)
+\approx0.95
+$$
+
+Substitute:
+
+$$
+Z=\frac{\hat{p}-p}{SE}
+$$
+
+giving:
+
+$$
+P
+\left(
+-1.959964
+\leq
+\frac{\hat{p}-p}{SE}
+\leq
+1.959964
+\right)
+\approx0.95
+$$
+
+---
+
+## 9. Rearranging the Inequality
+
+Starting with:
+
+$$
+-1.959964
+\leq
+\frac{\hat{p}-p}{SE}
+\leq
+1.959964
+$$
+
+Multiply all parts by $SE$:
+
+$$
+-1.959964SE
+\leq
+\hat{p}-p
+\leq
+1.959964SE
+$$
+
+Rearranging to isolate $p$:
+
+$$
+\hat{p}-1.959964SE
+\leq
 p
+\leq
+\hat{p}+1.959964SE
 $$
 
-For a Bernoulli random variable:
+Therefore, the 95% confidence interval is:
 
 $$
-E[X]=p
+\boxed{
+\hat{p}
+\pm
+1.959964SE
+}
+$$
+
+The lower bound is:
+
+$$
+\boxed{
+Lower=
+\hat{p}-1.959964SE
+}
+$$
+
+The upper bound is:
+
+$$
+\boxed{
+Upper=
+\hat{p}+1.959964SE
+}
+$$
+
+---
+
+# 🔢 Complete Example
+
+Suppose:
+
+$$
+n=1000
 $$
 
 and:
 
 $$
-Var(X)=p(1-p)
+clicks=45
 $$
 
-Now suppose we have `n` independent observations:
+### Step 1: Calculate the Point Estimate
 
 $$
-X_1,X_2,\ldots,X_n
+\hat{p}
+=
+\frac{clicks}{n}
 $$
 
-The sample proportion is:
-
 $$
-\hat p=\frac{X_1+X_2+\cdots+X_n}{n}
-$$
-
-The variance of the sample proportion is:
-
-$$
-Var(\hat p)=\frac{p(1-p)}{n}
+\hat{p}
+=
+\frac{45}{1000}
 $$
 
-Therefore, its standard deviation is:
+$$
+\boxed{\hat{p}=0.045}
+$$
+
+As a percentage:
 
 $$
-SD(\hat p)
+0.045\times100=4.5\%
+$$
+
+---
+
+### Step 2: Calculate the Standard Error
+
+The formula is:
+
+$$
+SE
+=
+\sqrt{
+\frac{\hat{p}(1-\hat{p})}{n}
+}
+$$
+
+Substitute the values:
+
+$$
+SE
+=
+\sqrt{
+\frac{0.045(1-0.045)}{1000}
+}
+$$
+
+$$
+=
+\sqrt{
+\frac{0.045(0.955)}{1000}
+}
+$$
+
+$$
+\approx0.006556
+$$
+
+Therefore:
+
+$$
+\boxed{SE\approx0.006556}
+$$
+
+---
+
+### Step 3: Calculate the Margin of Error
+
+The margin of error is:
+
+$$
+ME=z\times SE
+$$
+
+where:
+
+$$
+z=1.959964
+$$
+
+Therefore:
+
+$$
+ME
+=
+1.959964\times0.006556
+$$
+
+$$
+\boxed{ME\approx0.012849}
+$$
+
+---
+
+### Step 4: Calculate the Lower Bound
+
+$$
+Lower=\hat{p}-ME
+$$
+
+$$
+Lower=0.045-0.012849
+$$
+
+$$
+\boxed{Lower\approx0.032151}
+$$
+
+---
+
+### Step 5: Calculate the Upper Bound
+
+$$
+Upper=\hat{p}+ME
+$$
+
+$$
+Upper=0.045+0.012849
+$$
+
+$$
+\boxed{Upper\approx0.057849}
+$$
+
+Therefore, the final result is:
+
+$$
+\boxed{
+0.045000\quad0.032151\quad0.057849
+}
+$$
+
+Or in percentage form:
+
+$$
+\boxed{
+4.5\%\quad[3.2151\%,5.7849\%]
+}
+$$
+
+---
+
+# 🧠 Complete Derivation at a Glance
+
+The entire derivation can be summarized as:
+
+$$
+X_i\in\{0,1\}
+$$
+
+$$
+E[X_i]=p
+$$
+
+$$
+Var(X_i)=p(1-p)
+$$
+
+$$
+\hat{p}
+=
+\frac{1}{n}
+\sum_{i=1}^{n}X_i
+$$
+
+$$
+Var(\hat{p})
+=
+\frac{p(1-p)}{n}
+$$
+
+$$
+SE(\hat{p})
 =
 \sqrt{\frac{p(1-p)}{n}}
 $$
 
-Since the true value \(p\) is unknown, we estimate it using \(\hat p\):
+Since $p$ is unknown:
 
 $$
 \boxed{
-SE=
-\sqrt{\frac{\hat p(1-\hat p)}{n}}
+SE
+=
+\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
 }
 $$
 
-This is the standard error used by the problem.
+Using the normal approximation:
 
+$$
+\boxed{
+CI_{95\%}
+=
+\hat{p}
+\pm
+1.959964\times SE
+}
+$$
 
+Therefore:
+
+$$
+\boxed{
+CI_{95\%}
+=
+\hat{p}
+\pm
+1.959964
+\sqrt{
+\frac{\hat{p}(1-\hat{p})}{n}
+}
+}
+$$
+
+This is the complete formula implemented by the program.
+
+---
+
+## ⚠️ Technical Note
+
+The interval derived above is called the **Wald confidence interval** for a binomial proportion.
+
+It is simple and computationally efficient, which is why it is used in this problem.
+
+However, the Wald interval can perform poorly when:
+
+- $n$ is small
+- $\hat{p}$ is very close to $0$
+- $\hat{p}$ is very close to $1$
+
+For real-world statistical analysis, alternatives such as the **Wilson interval** or **exact binomial confidence interval** are often preferred.
+
+For this programming problem, however, we must use the specified Wald formula.
 ---
 
 # 6. What Does `z = 1.959964` Mean?

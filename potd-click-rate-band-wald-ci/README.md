@@ -330,6 +330,7 @@ $$
 we get:
 
 $$
+
 \sum_{i=1}^{n} Var(X_i)
 =
 np(1-p)
@@ -338,6 +339,7 @@ $$
 Therefore:
 
 $$
+
 Var(\hat{p})
 =
 \frac{np(1-p)}{n^2}
@@ -346,6 +348,7 @@ $$
 Simplifying:
 
 $$
+
 Var(\hat{p})
 =
 \frac{p(1-p)}{n}

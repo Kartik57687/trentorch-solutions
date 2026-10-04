@@ -29,10 +29,6 @@ For example:
 
 Both have exactly the same observed CTR:
 
-<div align="center">
-0.5 = 50%
-</div>
-
 But the second estimate is much more reliable because it is based on a much larger sample.
 
 Therefore, this problem asks us to calculate a **95% confidence interval** around the observed click rate.

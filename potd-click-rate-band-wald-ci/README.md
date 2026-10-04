@@ -174,7 +174,7 @@ $$
 
 where:
 
-* \(\hat p\) = observed proportion
+* \($\hat p\$) = observed proportion
 * \(n\) = sample size
 * \(SE\) = standard error
 

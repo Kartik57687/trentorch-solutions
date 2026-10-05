@@ -16,7 +16,7 @@ where:
 * \(b\) is the intercept
 * \(x\) is the input feature
 * \(y\) is the observed target
-* \(\hat{y}\) is the predicted value
+* $\hat{y}$ is the predicted value
 
 The required formulas are
 

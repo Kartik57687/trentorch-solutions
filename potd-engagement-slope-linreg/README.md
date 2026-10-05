@@ -893,7 +893,7 @@ with respect to \(w\) and \(b\).
 The implementation also explicitly handles the degenerate case where
 
 $$
-\operatorname{Var}(x)=0
+\text{Var}(x)=0
 $$
 
 by returning

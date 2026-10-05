@@ -592,7 +592,7 @@ def fit_line(x: np.ndarray, y: np.ndarray) -> tuple[float, float]:
 
 | Mathematical expression            | Python implementation                 |
 | ---------------------------------- | ------------------------------------- |
-| \(\bar{x}\)                        | `np.mean(x)`                          |
+| $$\(\bar{x}\)$$                    | `np.mean(x)`                          |
 | \(\bar{y}\)                        | `np.mean(y)`                          |
 | \(x_i-\bar{x}\)                    | `x - mean_x`                          |
 | \(y_i-\bar{y}\)                    | `y - mean_y`                          |

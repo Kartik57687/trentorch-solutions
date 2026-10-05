@@ -440,7 +440,7 @@ $$
 The numerator resembles covariance:
 
 $$
-\operatorname{Cov}(x,y)=
+\text{Var}{Cov}(x,y)=
 \frac{1}{n}
 \sum_{i=1}^{n}
 (x_i-\bar x)(y_i-\bar y)
@@ -449,7 +449,7 @@ $$
 and the denominator resembles variance:
 
 $$
-\operatorname{Var}(x)=
+\text{Var}{Var}(x)=
 \frac{1}{n}
 \sum_{i=1}^{n}
 (x_i-\bar x)^2
@@ -459,16 +459,16 @@ Therefore,
 
 $$
 w=
-\frac{n\operatorname{Cov}(x,y)}
-{n\operatorname{Var}(x)}
+\frac{n\text{Var}{Cov}(x,y)}
+{n\text{Var}{Var}(x)}
 $$
 
 and the \(n\) terms cancel:
 
 $$
 \boxed{
-w=\frac{\operatorname{Cov}(x,y)}
-{\operatorname{Var}(x)}
+w=\frac{\text{Var}{Cov}(x,y)}
+{\text{Var}{Var}(x)}
 }
 $$
 

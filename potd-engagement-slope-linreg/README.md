@@ -590,18 +590,18 @@ def fit_line(x: np.ndarray, y: np.ndarray) -> tuple[float, float]:
 
 # 9. Mapping Mathematics to Code
 
-| Mathematical expression            | Python implementation                 |
-| ---------------------------------- | ------------------------------------- |
-| $$\(\bar{x}\)$$                    | `np.mean(x)`                          |
-| \(\bar{y}\)                        | `np.mean(y)`                          |
-| \(x_i-\bar{x}\)                    | `x - mean_x`                          |
-| \(y_i-\bar{y}\)                    | `y - mean_y`                          |
-| \((x_i-\bar{x})(y_i-\bar{y})\)     | `(x - mean_x) * (y - mean_y)`         |
-| \(\sum(x_i-\bar{x})(y_i-\bar{y})\) | `np.sum((x - mean_x) * (y - mean_y))` |
-| \((x_i-\bar{x})^2\)                | `(x - mean_x) ** 2`                   |
-| \(\sum(x_i-\bar{x})^2\)            | `np.sum((x - mean_x) ** 2)`           |
-| \(w\)                              | `numerator / denominator`             |
-| \(b=\bar y-w\bar x\)               | `mean_y - w * mean_x`                 |
+| Mathematical expression                | Python implementation                 |
+| -------------------------------------- | ------------------------------------- |
+| $$\(\bar{x}\)$$                        | `np.mean(x)`                          |
+| $$\(\bar{y}\)$$                        | `np.mean(y)`                          |
+| $$\(x_i-\bar{x}\)$$                    | `x - mean_x`                          |
+| $$\(y_i-\bar{y}\)  $$                  | `y - mean_y`                          |
+| $$\((x_i-\bar{x})(y_i-\bar{y})\) $$    | `(x - mean_x) * (y - mean_y)`         |
+| $$\(\sum(x_i-\bar{x})(y_i-\bar{y})\)$$ | `np.sum((x - mean_x) * (y - mean_y))` |
+| $$\((x_i-\bar{x})^2\) $$               | `(x - mean_x) ** 2`                   |
+| $$\(\sum(x_i-\bar{x})^2\)    $$        | `np.sum((x - mean_x) ** 2)`           |
+| $$\(w\)       $$                       | `numerator / denominator`             |
+| $$\(b=\bar y-w\bar x\)    $$           | `mean_y - w * mean_x`                 |
 
 ---
 

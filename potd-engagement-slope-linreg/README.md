@@ -129,8 +129,7 @@ $$
 Differentiate with respect to \(b\):
 
 $$
-\frac{\partial J}{\partial b}
-=
+\frac{\partial J}{\partial b}=
 \sum_{i=1}^{n}
 2(y_i-wx_i-b)(-1)
 $$
@@ -138,8 +137,7 @@ $$
 Therefore,
 
 $$
-\frac{\partial J}{\partial b}
-=
+\frac{\partial J}{\partial b}=
 -2\sum_{i=1}^{n}(y_i-wx_i-b)
 $$
 
@@ -158,10 +156,8 @@ $$
 Expand the summation:
 
 $$
-\sum_{i=1}^{n}y_i
--
-w\sum_{i=1}^{n}x_i
--
+\sum_{i=1}^{n}y_i-
+w\sum_{i=1}^{n}x_i-
 \sum_{i=1}^{n}b
 =0
 $$
@@ -188,8 +184,7 @@ Divide by \(n\):
 
 $$
 b=
-\frac{\sum y_i}{n}
--
+\frac{\sum y_i}{n}-
 w\frac{\sum x_i}{n}
 $$
 
@@ -226,8 +221,7 @@ $$
 Using the chain rule:
 
 $$
-\frac{\partial J}{\partial w}
-=
+\frac{\partial J}{\partial w}=
 -2\sum_{i=1}^{n}x_i(y_i-wx_i-b)
 $$
 
@@ -246,10 +240,8 @@ $$
 Expand:
 
 $$
-\sum x_iy_i
--
-w\sum x_i^2
--
+\sum x_iy_i-
+w\sum x_i^2-
 b\sum x_i
 =0
 $$
@@ -257,8 +249,7 @@ $$
 Thus,
 
 $$
-\sum x_iy_i
-=
+\sum x_iy_i=
 w\sum x_i^2+b\sum x_i
 $$
 
@@ -271,8 +262,7 @@ $$
 into the equation:
 
 $$
-\sum x_iy_i
-=
+\sum x_iy_i=
 w\sum x_i^2
 +
 (\bar y-w\bar x)\sum x_i
@@ -287,20 +277,16 @@ $$
 we get
 
 $$
-\sum x_iy_i
-=
-w\sum x_i^2
-+
-n\bar x\bar y
--
+\sum x_iy_i=
+w\sum x_i^2+
+n\bar x\bar y-
 wn\bar x^2
 $$
 
 Rearrange the terms containing \(w\):
 
 $$
-\sum x_iy_i-n\bar x\bar y
-=
+\sum x_iy_i-n\bar x\bar y=
 w
 \left(
 \sum x_i^2-n\bar x^2
@@ -347,16 +333,14 @@ $$
 
 Expand:
 
-$$
-=
+$$=
 \sum
 (x_iy_i-x_i\bar y-\bar xy_i+\bar x\bar y)
 $$
 
 Therefore,
 
-$$
-=
+$$=
 \sum x_iy_i
 -\bar y\sum x_i
 -\bar x\sum y_i
@@ -377,8 +361,7 @@ $$
 
 we obtain
 
-$$
-=
+$$=
 \sum x_iy_i
 -n\bar x\bar y
 -n\bar x\bar y
@@ -389,8 +372,7 @@ Hence,
 
 $$
 \boxed{
-\sum (x_i-\bar x)(y_i-\bar y)
-=
+\sum (x_i-\bar x)(y_i-\bar y)=
 \sum x_iy_i-n\bar x\bar y
 }
 $$
@@ -409,8 +391,7 @@ $$
 
 Therefore,
 
-$$
-=
+$$=
 \sum x_i^2
 -2\bar x\sum x_i
 +\sum\bar x^2
@@ -424,8 +405,7 @@ $$
 
 we obtain
 
-$$
-=
+$$=
 \sum x_i^2
 -2n\bar x^2
 +n\bar x^2
@@ -435,8 +415,7 @@ Therefore,
 
 $$
 \boxed{
-\sum(x_i-\bar x)^2
-=
+\sum(x_i-\bar x)^2=
 \sum x_i^2-n\bar x^2
 }
 $$
@@ -461,8 +440,7 @@ $$
 The numerator resembles covariance:
 
 $$
-\operatorname{Cov}(x,y)
-=
+\operatorname{Cov}(x,y)=
 \frac{1}{n}
 \sum_{i=1}^{n}
 (x_i-\bar x)(y_i-\bar y)
@@ -471,8 +449,7 @@ $$
 and the denominator resembles variance:
 
 $$
-\operatorname{Var}(x)
-=
+\operatorname{Var}(x)=
 \frac{1}{n}
 \sum_{i=1}^{n}
 (x_i-\bar x)^2
